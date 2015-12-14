@@ -1,0 +1,16 @@
+{
+  "name": "dotrand-api",
+  "version": "1.0.0",
+  "description": "The api for dotrand mobile app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/ashikodi/dotrand-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/ashikodi/dotrand-api#readme"
+}
