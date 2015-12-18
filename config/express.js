@@ -3,9 +3,7 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
   session = require('express-session'),
-  config = require('./config'),
-  path = require('path'),
-  appDir = path.dirname(require.main.filename);
+  config = require('./config');
 
 module.exports = function() {
   var app = express();
@@ -22,11 +20,7 @@ module.exports = function() {
     res.header('Access-Control-Allow-Methods', "POST, PUT, DELETE, GET");
     next();
   });
-
-  app.get('/', function(req, res) {
-    res.sendFile(appDir + '/404.html');
-  });
-
+  require('../app/routes/')(app);
   return app;
 
 }
