@@ -1,6 +1,9 @@
 'use strict';
 
-module.exports = function(app) {
+var userRoute = require('./user');
+
+module.exports = function(app, passport) {
+  userRoute(app, passport);
 
   app.use(function(req, res) {
     res.setHeader('Content-Type', 'application/json');
