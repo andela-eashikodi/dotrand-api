@@ -6,8 +6,7 @@ var mongoose = require('mongoose'),
 
     var userSchema = new schema({
       username: {
-        type: String,
-        required: true
+        type: String
       },
       phone: {
         type: String,
@@ -16,8 +15,7 @@ var mongoose = require('mongoose'),
         }
       },
       password: {
-        type: String,
-        required: true
+        type: String
       },
       profilePic: {
         type: String

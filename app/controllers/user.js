@@ -65,7 +65,7 @@ UserController.prototype.signUp = function(strategy, passport) {
             return res.json(err);
           }
           var info = {
-            recipient: '+234' + user.phone,
+            recipient: user.phone,
             message: 'Thank you for registering to dotrand'
           };
           UserController.prototype.sendSms(info);
@@ -87,7 +87,7 @@ UserController.prototype.signIn = function(strategy, passport) {
       }
       else {
         var token = jwt.sign(user, config.sessionSecret, {
-          expiresInMinutes: 1440 //24hr expiration
+          expiresIn: 86400 //24hr expiration
         });
         //return info including token in JSON format
         return res.json({
@@ -201,7 +201,7 @@ UserController.prototype.resetPass = function(req, res) {
         from: 'World tree ✔ <no-reply@worldtreeinc.com>',
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+          'This is a confirmation that the password for your account ' + user.username + ' has just been changed.\n'
       };
       transporter.sendMail(mailOptions, function(err) {
         if (err) {
