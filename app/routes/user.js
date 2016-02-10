@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 
   router.route('/users')
     .get(ctrl.getAll)
-    .post(ctrl.signUp('local', passport));
+    .post(ctrl.signUp('local', passport))
     .delete(ctrl.deleteAll);
 
   router.route('/user/authenticate')
