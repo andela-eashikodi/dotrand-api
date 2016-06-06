@@ -31,24 +31,14 @@ module.exports = function (passport, User) {
       passReqToCallback: true
     },
     function (req, username, password, done) {
-      User.findOne({phone: req.body.phone}, function (err, user) {
+      User.findOne({username: username}, function (err, user) {
         if (err) {
           return done(err);
         }
         if (user) {
-          return done(null, false, {message: 'Number already taken.'});
+          return done(null, false, {message: 'Username already taken.'});
         }
-        else {
-          User.findOne({username: username}, function (err, user) {
-            if (err) {
-              return done(err);
-            }
-            if (user) {
-              return done(null, false, {message: 'Username already taken.'});
-            }
-            return done(null, req.body);
-          });
-        }
+        return done(null, req.body);
       });
     }
   ));

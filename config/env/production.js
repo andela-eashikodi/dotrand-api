@@ -8,4 +8,4 @@ module.exports = {
     AUTH_TOKEN: '4e15cbbc2371bb056c6033cdb2205557',
     myNumber: '+12342030309'
   }
-}
+};

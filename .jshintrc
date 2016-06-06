@@ -1,0 +1,11 @@
+{
+  "globalstrict"  : true,
+  "globals": {
+    "console": true,
+    "__dirname": true,
+    "require" :true,
+    "process": true,
+    "module": true,
+    "async": true
+  }
+}

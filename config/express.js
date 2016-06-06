@@ -27,4 +27,4 @@ module.exports = function() {
   require('../app/routes/')(app, passport);
   return app;
 
-}
+};

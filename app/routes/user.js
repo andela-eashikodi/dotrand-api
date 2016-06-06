@@ -13,11 +13,14 @@ module.exports = function(app, passport) {
     .delete(ctrl.deleteAll);
 
   router.route('/user/authenticate')
-    .post(ctrl.signIn('local-signin', passport))
+    .post(ctrl.signIn('local-signin', passport));
 
   router.route('/user/:id')
     .get(ctrl.findOne)
     .delete(ctrl.deleteOne);
+    
+  router.route('/username/availability')
+    .post(ctrl.usernameAvail);
 
   app.use('', router);
-}
+};

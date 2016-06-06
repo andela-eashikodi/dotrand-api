@@ -29,12 +29,19 @@ UserController.prototype.sendSms = function(smsInfo) {
 };
 
 UserController.prototype.usernameAvail = function(req, res) {
-  User.findOne({username: req.body.username}, function(err, user) {
+  User.findOne({username: req.body.value}, function(err, user) {
     if(user) {
-      res.status(417).json({message: 'username is taken'});
+      res.send({
+        isValid: false,
+        value: req.body.value,
+        user: user
+      });
     }
     else {
-      res.json({message: 'available'});
+      res.send({
+        isValid: true,
+        value: req.body.value
+      });
     }
   });
 };
@@ -62,13 +69,13 @@ UserController.prototype.signUp = function(strategy, passport) {
       else {
         User.create(req.body, function(err, user) {
           if (err) {
-            return res.json(err);
+            return res.status(417).json(err);
           }
-          var info = {
-            recipient: user.phone,
-            message: 'Thank you for registering to dotrand'
-          };
-          UserController.prototype.sendSms(info);
+          // var info = {
+          //   recipient: user.phone,
+          //   message: 'Thank you for registering to dotrand'
+          // };
+          // UserController.prototype.sendSms(info);
           return res.json(user);
         });
       }
@@ -153,13 +160,13 @@ UserController.prototype.forgotPass = function(req, res) {
       var info = {
         recipient: user.phone,
         message: 'Reset password confirmation code is ' + token + '. Enter this in our app to reset your account password.'
-      }
+      };
       var res = UserController.prototype.sendSms(info);
       done(res);
     }
   ], function(err) {
     if (err) {
-      return next(err);
+      return err;
     }
     res.json({
       message: 'Message Sent!'
@@ -203,12 +210,12 @@ UserController.prototype.resetPass = function(req, res) {
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.username + ' has just been changed.\n'
       };
-      transporter.sendMail(mailOptions, function(err) {
-        if (err) {
-          console.log(err);
-        }
-        done(err);
-      });
+      // transporter.sendMail(mailOptions, function(err) {
+      //   if (err) {
+      //     console.log(err);
+      //   }
+      //   done(err);
+      // });
     }
   ], function(err) {
     if (err) return err;
